@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} font-light`}>
+      <body className={`${poppins.className} font-light transition-all`}>
         <Header />
         {children}
         <Footer />
