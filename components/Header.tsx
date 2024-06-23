@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
+import { cn } from '@/lib/utils'
 
 const Header = () => {
   return (
@@ -16,7 +17,7 @@ const Header = () => {
             alt="Logo"
             className="h-10 w-10"
           />
-          <h1 className='text-2xl text-gold font-great-vibes'>
+          <h1 className='text-3xl text-gold font-alta'>
             SEA Salon
           </h1>
         </div>
@@ -57,14 +58,16 @@ const NavigationItems = ({
   className: string
 }) => {
   return (
-    <div className={className}>
-      <Link href="/" className='hover:border-b hover:border-black hover:font-medium'>
+    <div className={cn(
+      className, "text-[18px]"
+    )}>
+      <Link href="/" className='hover:border-b hover:border-black'>
         HOME
       </Link>
-      <Link href="/" className='hover:border-b hover:border-black hover:font-medium'>
+      <Link href="/" className='hover:border-b hover:border-black'>
         MEMBER
       </Link>
-      <Link href="/" className='hover:border-b hover:border-black hover:font-medium'>
+      <Link href="/" className='hover:border-b hover:border-black'>
         LOGIN
       </Link>
     </div>
