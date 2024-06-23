@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 const Header = () => {
   return (
-    <header className='fixed w-full top-0 h-[80px] py-4 px-8 flex justify-between items-center' data-aos="fade-down">
+    <header className='fixed w-full top-0 h-[80px] py-4 flex justify-between items-center' data-aos="fade-down">
       <div className='wrapper w-full flex justify-between items-center'>
         <div className='flex gap-x-8 items-center'>
           <Image 
