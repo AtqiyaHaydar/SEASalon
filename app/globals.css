@@ -94,6 +94,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  .wrapper {
+    @apply max-w-7xl mx-auto px-4 w-full
+  }
 
   /* Custom Font Family */
   .font-great-vibes {

@@ -3,6 +3,10 @@
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 import Aos from 'aos';
+import Image from 'next/image';
+
+import Salon from "@/public/Salon.png"
+import Hero from '@/components/Hero';
 
 const HomePage = () => {
   useEffect(() => {
@@ -13,11 +17,8 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className='mt-[96px]'>
-      <h1>SEA Salon, Beauty and Elegance Redefined</h1>
-      <p>
-        Experience top-notch treatments with a touch of elegance at our salon, where your beauty is enhanced and luxury is felt.
-      </p>
+    <div className='flex flex-col items-center'>
+      <Hero />
     </div>
   )
 }
