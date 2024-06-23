@@ -19,6 +19,8 @@ const config = {
     },
     extend: {
       colors: {
+        "gold": "#EBC58E",
+        "black": "#000000",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

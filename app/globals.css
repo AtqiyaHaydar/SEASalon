@@ -7,6 +7,16 @@
   src: url("../public/fonts/greatvibes/GreatVibes-Regular.ttf");
 }
 
+@font-face {
+  font-family: AutumnFlowers;
+  src: url("../public/fonts/AutumnFlowers-9YVZK.otf");
+}
+
+@font-face {
+  font-family: DarlingtonDemo;
+  src: url("../public/fonts/DarlingtonDemo-z8xjG.ttf");
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -80,5 +90,11 @@
   }
   .font-great-vibes {
     font-family: GreatVibes;
+  }
+  .font-autumn-flowers {
+    font-family: AutumnFlowers;
+  }
+  .font-darlington-demo {
+    font-family: DarlingtonDemo;
   }
 }
