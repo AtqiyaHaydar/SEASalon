@@ -1,24 +1,49 @@
 "use client"
 
 import 'aos/dist/aos.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Aos from 'aos';
-import Image from 'next/image';
 
-import Salon from "@/public/Salon.png"
 import Hero from '@/components/Hero';
+import Services from '@/components/Services';
+import { ArrowRight } from 'lucide-react';
 
 const HomePage = () => {
+  const [showText, setShowText] = useState(true);
+
   useEffect(() => {
     Aos.init({
       duration: 1000,
       once: true,
     });
+
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setShowText(false);
+      } else {
+        setShowText(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center gap-y-8'>
       <Hero />
+      <div 
+        data-aos="fade-up"
+        className={`flex absolute bottom-20  text-gold text-xl`}
+      >
+        <p className={`${showText ? 'fade-in' : 'fade-out'} items-center flex gap-x-4`}>
+          See Our Services <ArrowRight />
+        </p>
+      </div>
+      <Services />
     </div>
   )
 }
