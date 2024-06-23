@@ -4,17 +4,23 @@
 
 @font-face {
   font-family: GreatVibes;
-  src: url("../public/fonts/greatvibes/GreatVibes-Regular.ttf");
+  src: url("../public/fonts/GreatVibes-Regular.ttf");
 }
-
 @font-face {
   font-family: AutumnFlowers;
   src: url("../public/fonts/AutumnFlowers-9YVZK.otf");
 }
-
 @font-face {
   font-family: DarlingtonDemo;
   src: url("../public/fonts/DarlingtonDemo-z8xjG.ttf");
+}
+@font-face {
+  font-family: Liana;
+  src: url("../public/fonts/Liana.ttf");
+}
+@font-face {
+  font-family: Alta;
+  src: url("../public/fonts/Liana.ttf");
 }
 
 @layer base {
@@ -96,5 +102,11 @@
   }
   .font-darlington-demo {
     font-family: DarlingtonDemo;
+  }
+  .font-liana {
+    font-family: Liana;
+  }
+  .font-alta {
+    font-family: Alta;
   }
 }
