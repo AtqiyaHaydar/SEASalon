@@ -94,6 +94,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Custom Font Family */
   .font-great-vibes {
     font-family: GreatVibes;
   }
