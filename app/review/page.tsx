@@ -1,9 +1,9 @@
 "use client"
 
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import { Plus } from 'lucide-react';
+import { Plus, StarIcon } from 'lucide-react';
 import React, { useState } from 'react'
 
 interface CustomerReviewI {
@@ -30,8 +30,22 @@ const page = () => {
             </DialogContent>
           </Dialog>
       </div>
-      <div className='wrapper grid-cols-1 md:grid-cols-3'>
-
+      <div className='wrapper grid grid-cols-1 md:grid-cols-3 gap-6 mb-12'>
+        <CustomerReviewCard 
+          customerName='Atqiya'
+          starRating={5}
+          comment='What you think about, sharing our last name?'
+        />
+        <CustomerReviewCard 
+          customerName='Atqiya'
+          starRating={5}
+          comment='What you think about, sharing our last name?'
+        />
+        <CustomerReviewCard 
+          customerName='Atqiya'
+          starRating={5}
+          comment='What you think about, sharing our last name?'
+        />
       </div>
     </>
   )
@@ -45,8 +59,18 @@ const CustomerReviewCard = ({
   comment
 }: CustomerReviewI) => {
   return (
-    <Card>
-
+    <Card className='shadow-md border-2 border-gold' data-aos="fade-up">
+      <CardHeader className='flex flex-row items-center w-full justify-between'>
+        <p className='font-regular'>{customerName}</p>
+        <div className='flex font-medium flex-row gap-3 text-gold items-center'>
+          {starRating} <StarIcon className='h-4 w-4' />
+        </div>
+      </CardHeader>
+      <CardContent>
+        <p className='font-regular text-black/70'>
+          {comment}
+        </p>
+      </CardContent>
     </Card>
   )
 }
