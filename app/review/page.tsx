@@ -1,18 +1,19 @@
 "use client"
 
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Plus } from 'lucide-react';
 import React, { useState } from 'react'
 
-interface customerReview {
+interface CustomerReviewI {
   customerName: string
   starRating: number;
   comment: string;
 }
 
 const page = () => {
-  const [customerReviewData, setCustomerReviewData] = useState<customerReview[]>([])
+  const [customerReviewData, setCustomerReviewData] = useState<CustomerReviewI[]>([])
 
   return (
     <>
@@ -25,7 +26,7 @@ const page = () => {
             </Button>
             </DialogTrigger>
             <DialogContent>
-              
+
             </DialogContent>
           </Dialog>
       </div>
@@ -37,3 +38,15 @@ const page = () => {
 }
 
 export default page
+
+const CustomerReviewCard = ({
+  customerName, 
+  starRating, 
+  comment
+}: CustomerReviewI) => {
+  return (
+    <Card>
+
+    </Card>
+  )
+}
