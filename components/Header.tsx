@@ -60,7 +60,7 @@ const MobileNavigation = () => {
     <div className='flex md:hidden'>
       <Sheet>
         <SheetTrigger asChild className='h-8 w-8 cursor-pointer'>
-          <Menu className='text-black' />
+          <Menu className='text-gold' />
         </SheetTrigger>
         <SheetContent className='flex flex-col gap-y-12 items-center justify-center h-full'>
           <NavigationItems 
