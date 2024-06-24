@@ -91,12 +91,27 @@
   * {
     @apply border-border;
     scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #EBC58E transparent; 
   }
   body {
     @apply bg-background text-foreground;
   }
   .wrapper {
     @apply max-w-5xl mx-auto w-full px-4
+  }
+  ::-webkit-scrollbar {
+    width: 6px; /* Width of the scrollbar */
+  } 
+  ::-webkit-scrollbar-track {
+    background: transparent; /* Background color of the scrollbar track */
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #EBC58E; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Roundness of the scrollbar thumb (use a large value like 999px for fully rounded) */
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #D8B17E; /* Color when hovering over the scrollbar thumb */
   }
 
   /* Custom Font Family */
