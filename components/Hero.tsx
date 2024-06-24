@@ -11,10 +11,10 @@ const Hero = () => {
       <div className='flex flex-col gap-y-12 items-center md:items-start'>
         <div className='space-y-[12px]'>
           <h2 data-aos="fade-right" className='text-gold text-5xl leading-[-25px] font-alta font-bold text-center md:text-start'>Beauty and Elegance Redefined.</h2>
-          <p data-aos="fade-right" data-aos-duration="1200" className='text-orange-300 text-center md:text-start tracking-wider'>Experience top-notch treatments with a touch of elegance at our salon, where your beauty is enhanced and luxury is felt.</p>
+          <p data-aos="fade-right" data-aos-delay="100" className='text-orange-300 text-center md:text-start tracking-wider'>Experience top-notch treatments with a touch of elegance at our salon, where your beauty is enhanced and luxury is felt.</p>
         </div>
         <Link href="/reserve">
-          <Button data-aos="fade-right" data-aos-duration="1400" className='w-[250px] rounded-full bg-gold hover:bg-orange-300'>
+          <Button data-aos="fade-right" data-aos-delay="200" className='w-[250px] rounded-full bg-gold hover:bg-orange-300'>
             Reserve Now
           </Button>
         </Link>
