@@ -1,5 +1,9 @@
 import React from 'react'
 
+import HairStyling from '@/public/haircutstyling.svg'
+import Manicure from '@/public/manicure.svg'
+import FacialTreatment from '@/public/facialtreatments.svg'
+
 const Services = () => {
   return (
     <div className='wrapper flex flex-col gap-y-12 items-center mt-16'>
@@ -10,7 +14,7 @@ const Services = () => {
       </p>
       </div>
       <div>
-      awda
+      
       </div>
       <div  id="servicesection" />
     </div>
