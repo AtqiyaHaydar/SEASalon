@@ -68,15 +68,15 @@ const page = () => {
 
   return (
     <>
-      <div className='h-[200px] md:h-[250px] w-full mt-[80px] flex items-center justify-center gap-y-3 flex-col'>
+      <div className='h-[200px] md:h-[250px] w-full mt-[80px] flex items-center justify-center gap-y-3 flex-col' data-aos="fade-down">
         <h1 className='font-alta text-3xl md:text-5xl text-center text-gold'>Reservation</h1>
         <h3 className='text-black/50 text-center'>
-        Effortless Booking, Beautiful Results: Schedule Your Salon Experience Today!
+          Effortless Booking, Beautiful Results: Schedule Your Salon Experience Today!
         </h3>
       </div>
-      <div className='wrapper flex w-full justify-center'>
+      <div data-aos="fade-up" className='wrapper flex w-full justify-center'>
         <Form {...form}>
-          <form className=' shadow-md space-y-6 border-2 w-full md:w-[600px] border-gold rounded-xl mb-20 py-10 px-6 md:translate-y-[-50px]' onSubmit={form.handleSubmit(onSubmit)}>
+          <form className='shadow-md space-y-6 border-2 w-full md:w-[600px] border-gold rounded-xl mb-20 py-10 px-6 md:translate-y-[-50px]' onSubmit={form.handleSubmit(onSubmit)}>
             <FormField 
               control={form.control}
               name="name"
