@@ -10,5 +10,6 @@ export const reservationSchema = z.object({
   name: z.string().min(1),
   phoneNumber: z.string().min(1).max(15),
   serviceType: z.enum(["Haircuts and Styling", "Manicure and Pedicure", "Facial Treatments"]),
-  dateAndTime: z.date()
+  date: z.date(),
+  time: z.string(),
 })

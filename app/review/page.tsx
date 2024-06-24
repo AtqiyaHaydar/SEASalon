@@ -63,7 +63,7 @@ const page = () => {
 
   return (
     <>
-      <div className='h-[200px] md:h-[300px] w-full mt-[80px] flex items-center justify-center gap-y-6 flex-col' data-aos="fade-down">
+      <div className='h-[200px] md:h-[250px] w-full mt-[80px] flex items-center justify-center gap-y-6 flex-col' data-aos="fade-down">
           <h1 className='font-alta text-3xl md:text-5xl text-center text-gold'>What Our Clients Are Saying</h1>
           <Dialog>
             <DialogTrigger asChild>
