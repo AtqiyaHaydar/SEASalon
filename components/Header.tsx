@@ -37,7 +37,7 @@ const Header = () => {
             alt="Logo"
             className="h-10 w-10"
           />
-          <h1 className='text-3xl text-gold font-alta'>
+          <h1 className='text-3xl text-gold font-liana'>
             SEA Salon
           </h1>
         </div>
@@ -85,7 +85,7 @@ const NavigationItems = ({
         HOME
       </Link>
       <Link href="/reserve" className='hover:border-b hover:border-black'>
-        Reserve
+        RESERVE
       </Link>
       <Link href="/review" className='hover:border-b hover:border-black'>
         REVIEW
