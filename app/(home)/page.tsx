@@ -7,6 +7,7 @@ import Aos from 'aos';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import { ArrowRight } from 'lucide-react';
+import Clients from '@/components/Clients';
 
 const HomePage = () => {
   const [showText, setShowText] = useState(true);
@@ -39,10 +40,11 @@ const HomePage = () => {
         data-aos="fade-up"
         className={`flex absolute bottom-20  text-gold text-xl`}
       >
-        <p className={`${showText ? 'fade-in' : 'fade-out'} items-center flex gap-x-4`}>
+        <a href="#servicesection" className={`${showText ? 'fade-in' : 'fade-out'} items-center hidden md:flex gap-x-4 cursor-pointer transition-all hover:gap-x-6`}>
           See Our Services <ArrowRight />
-        </p>
+        </a>
       </div>
+      <Clients />
       <Services />
     </div>
   )

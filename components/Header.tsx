@@ -64,11 +64,17 @@ const NavigationItems = ({
       <Link href="/" className='hover:border-b hover:border-black'>
         HOME
       </Link>
-      <Link href="/" className='hover:border-b hover:border-black'>
+      <Link href="/reserve" className='hover:border-b hover:border-black'>
+        Reserve
+      </Link>
+      <Link href="/review" className='hover:border-b hover:border-black'>
+        REVIEW
+      </Link>
+      <Link href="/member" className='hover:border-b hover:border-black'>
         MEMBER
       </Link>
-      <Link href="/" className='hover:border-b hover:border-black'>
-        LOGIN
+      <Link href="/sign-in" className='hover:border-b hover:border-black'>
+        SIGN IN
       </Link>
     </div>
   )
