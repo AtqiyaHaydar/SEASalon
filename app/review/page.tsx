@@ -3,8 +3,22 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { customerReviewSchema } from '@/schema/schema';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus, StarIcon } from 'lucide-react';
 import React, { useState } from 'react'
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
 
 interface CustomerReviewI {
   customerName: string
@@ -13,7 +27,26 @@ interface CustomerReviewI {
 }
 
 const page = () => {
-  const [customerReviewData, setCustomerReviewData] = useState<CustomerReviewI[]>([])
+  const [customerReviewData, setCustomerReviewData] = useState<CustomerReviewI[]>([
+    {
+      customerName: "Chaewon",
+      starRating: 5,
+      comment: "Amazing experience at SEASalon! Friendly staff, perfect haircut and color. Clean and beautifully decorated. Will return!"
+    }
+  ])
+
+  const form = useForm<z.infer<typeof customerReviewSchema>>({
+    resolver: zodResolver(customerReviewSchema),
+    defaultValues: {
+      customerName: "",
+      starRating: 0,
+      comment: ""
+    }
+  })
+
+  const onSubmit = (values: z.infer<typeof customerReviewSchema>) => {
+    console.log(values)
+  }
 
   return (
     <>
@@ -31,21 +64,13 @@ const page = () => {
           </Dialog>
       </div>
       <div className='wrapper grid grid-cols-1 md:grid-cols-3 gap-6 mb-12'>
-        <CustomerReviewCard 
-          customerName='Atqiya'
-          starRating={5}
-          comment='What you think about, sharing our last name?'
-        />
-        <CustomerReviewCard 
-          customerName='Atqiya'
-          starRating={5}
-          comment='What you think about, sharing our last name?'
-        />
-        <CustomerReviewCard 
-          customerName='Atqiya'
-          starRating={5}
-          comment='What you think about, sharing our last name?'
-        />
+        {customerReviewData.map(item => (
+          <CustomerReviewCard 
+            customerName={item.customerName}
+            starRating={item.starRating}
+            comment={item.comment}
+          />
+        ))}
       </div>
     </>
   )
@@ -59,15 +84,15 @@ const CustomerReviewCard = ({
   comment
 }: CustomerReviewI) => {
   return (
-    <Card className='shadow-md border-2 border-gold' data-aos="fade-up">
+    <Card className='shadow-md border-2 border-gold max-w-[300px]' data-aos="fade-up">
       <CardHeader className='flex flex-row items-center w-full justify-between'>
-        <p className='font-regular'>{customerName}</p>
+        <p className='font-regular font-medium text-black/70'>{customerName}</p>
         <div className='flex font-medium flex-row gap-3 text-gold items-center'>
           {starRating} <StarIcon className='h-4 w-4' />
         </div>
       </CardHeader>
       <CardContent>
-        <p className='font-regular text-black/70'>
+        <p className='text-[14px] text-black/70'>
           {comment}
         </p>
       </CardContent>
