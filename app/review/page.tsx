@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card';
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import { customerReviewSchema } from '@/schema/schema';
+import { customerReviewSchema } from '@/lib/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus, StarIcon } from 'lucide-react';
 import React, { useState } from 'react'
@@ -53,10 +53,11 @@ const page = () => {
         comment: values.comment,
       };
       setCustomerReviewData([...customerReviewData, newReview]);
-      toast("Review successfully added!")
+      toast.success("Review successfully added!")
+      form.reset()
     }
     else {
-      toast("Please fill in all fields.")
+      toast.warning("Please fill in all fields.")
     }
   };
 
