@@ -26,7 +26,7 @@ const serviceData = [
 const Services = () => {
   return (
     <div className='wrapper flex flex-col gap-y-12 items-center my-16'>
-      <div className='text-center space-y-4' data-aos="fade-up">
+      <div id="servicesection" className='text-center space-y-4' data-aos="fade-up">
         <h3 className='text-3xl font-alta text-gold font-bold'>Our Services</h3>
         <p className='text-black/50 text-center max-w-[750px]'>
         Explore our premium beauty treatments, from luxurious facials to expert hair styling, tailored to rejuvenate and enhance your natural beauty.
@@ -41,7 +41,6 @@ const Services = () => {
           />
         ))}
       </div>
-      <div  id="servicesection" />
     </div>
   )
 }
