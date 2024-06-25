@@ -25,9 +25,9 @@ export default function RootLayout({
       <body className={`${poppins.className} font-light transition-all overflow-x-hidden`}>
         <Header />
         {children}
+        <Toaster />
         <Footer />
       </body>
-      <Toaster />
     </html>
   );
 }
