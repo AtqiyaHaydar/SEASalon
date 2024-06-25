@@ -1,7 +1,7 @@
 "use server"
 
 import prisma from "@/lib/prisma";
-import { customerReviewSchema, reservationSchema } from "@/lib/schema";
+import { reservationSchema } from "@/lib/schema";
 import { z } from "zod";
 import { Reservation } from "@prisma/client";
 
