@@ -35,6 +35,8 @@ import { Calendar } from '@/components/ui/calendar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { createCustomerReservation } from '@/actions/reserve-actions';
 import { toast } from 'sonner';
+import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
 
 const timeOptions = [
   { value: '09:00 - 10.00', label: '09.00 - 10.00' },
@@ -53,6 +55,12 @@ const timeOptions = [
 ];
 
 const page = () => {
+  const { data: session } = useSession();
+
+  if (!session) {
+    redirect("/sign-in")
+  }
+
   const formReservation = useForm<z.infer<typeof reservationSchema>>({
     resolver: zodResolver(reservationSchema),
     defaultValues: {

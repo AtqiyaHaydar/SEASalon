@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { signOut, useSession } from 'next-auth/react'
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -77,6 +78,14 @@ const NavigationItems = ({
 }:{
   className: string
 }) => {
+  const { data: session } = useSession();
+
+  const handleLogout = () => {
+    signOut({
+      callbackUrl: '/',
+    });
+  };
+
   return (
     <div className={cn(
       className, "text-[18px]"
@@ -90,9 +99,20 @@ const NavigationItems = ({
       <Link href="/review" className='hover:border-b hover:border-black'>
         REVIEW
       </Link>
-      <Link href="/sign-in" className='hover:border-b hover:border-black'>
-        SIGN IN
-      </Link>
+      {session && (
+        <Link href="/dashboard">
+          DASHBOARD
+        </Link>
+      )}
+      {session ? (
+        <button onClick={handleLogout} className='hover:border-b hover:border-black'>
+          SIGN OUT
+        </button>
+      ) : (
+        <Link href="/sign-in" passHref>
+          <p className='hover:border-b hover:border-black'>SIGN IN</p>
+        </Link>
+      )}
     </div>
   )
 }
