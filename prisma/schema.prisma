@@ -18,7 +18,8 @@ model Reservation {
   name String
   phoneNumber String
   serviceType String @default("Haircuts and Styling")
-  dateAndTime DateTime
+  date DateTime
+  time String
 }
 
 model CustomerReview {

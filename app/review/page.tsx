@@ -139,7 +139,7 @@ const page = () => {
                   />
                   <div className='flex flex-col md:flex-row gap-4'>
                     <Button type="submit" className='bg-gold rounded-full hover:bg-orange-300'>
-                        Submit Review
+                        Create Review
                     </Button>
                     <DialogClose asChild>
                       <Button className='bg-white border-gold rounded-full border-2 hover:bg-white min-w-[120px] text-gold'>

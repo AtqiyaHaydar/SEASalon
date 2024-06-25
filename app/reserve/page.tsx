@@ -33,6 +33,8 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Calendar } from '@/components/ui/calendar';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { createCustomerReservation } from '@/actions/reserve-actions';
+import { toast } from 'sonner';
 
 const timeOptions = [
   { value: '09:00', label: '09.00 - 10.00' },
@@ -62,8 +64,15 @@ const page = () => {
     }
   })
 
-  const onSubmit = (values: z.infer<typeof reservationSchema>) => {
-    console.log(values)
+  const onSubmit = async (values: z.infer<typeof reservationSchema>) => {
+    try {
+      await createCustomerReservation(values)
+      toast.success("Reservation successfully added!")
+      form.reset();
+    } catch (error) {
+      console.log(error)
+      toast.error("Failed to create a reservation")
+    }
   }
 
   return (
@@ -166,7 +175,7 @@ const page = () => {
                           selected={field.value}
                           onSelect={field.onChange}
                           disabled={(date) =>
-                            date > new Date() || date < new Date("1900-01-01")
+                            date < new Date()
                           }
                           initialFocus
                         />
@@ -205,6 +214,9 @@ const page = () => {
                 )}
               />
             </div>
+            <Button type="submit" className='bg-gold rounded-full w-full hover:bg-orange-300'>
+              Create Reservation
+            </Button>
           </form>
         </Form>
       </div>
