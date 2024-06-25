@@ -11,8 +11,10 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import Flower1 from '@/public/flower1.svg'
-import Flower2 from '@/public/flower2.svg'
 import Image from 'next/image'
+import { signIn } from "next-auth/react";
+import { toast } from 'sonner'
+import { redirect } from 'next/navigation'
 
 const SignInPage = () => {
   const form = useForm({
@@ -24,9 +26,27 @@ const SignInPage = () => {
   })
 
   const onSubmit = async (values: z.infer<typeof signInSchema>) => {
-    console.log("SUBMITTED WITH VALUE: ", values)
-
-  }
+    console.log("SUBMITTED WITH VALUE: ", values);
+    try {
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: values.email,
+        password: values.password,
+      });
+  
+      if (result?.error) {
+        console.error(result.error);
+        toast.error("An error occurred when signing in");
+      } else {
+        toast.success("Signed in successfully");
+        // Redirect or perform other actions after successful sign-in
+        redirect("/dashboard")
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("An error occurred when signing in");
+    }
+  };
 
   return (
       <div className='relative wrapper overflow-hidden flex items-center justify-center h-screen'>

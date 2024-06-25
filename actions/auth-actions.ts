@@ -1,7 +1,7 @@
 "use server"
 
 import prisma from "@/lib/prisma"
-import { signInSchema, signUpSchema } from "@/lib/schema";
+import { signUpSchema } from "@/lib/schema";
 import { z } from "zod";
 
 export async function getUserByEmail(email: any, password: any) {

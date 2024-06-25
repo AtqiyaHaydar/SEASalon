@@ -108,7 +108,7 @@ const SignUpPage = () => {
             )}
           />
           <Button type="submit" className='bg-gold hover:bg-orange-300 rounded-full w-full'>
-            Sign In
+            Sign Up
           </Button>
           <div className='text-center w-full underline text-gold'>
             <Link href="/sign-in">
