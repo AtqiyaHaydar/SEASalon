@@ -28,3 +28,18 @@ model CustomerReview {
   starRating Int
   comment String
 }
+
+model User {
+  userId Int @id @default(autoincrement())
+  fullName String
+  email String
+  phoneNumber String
+  password String
+  role String @default("Customer")
+}
+
+model Service {
+  id Int @id @default(autoincrement())
+  serviceName String
+  duration Int
+}

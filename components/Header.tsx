@@ -90,9 +90,6 @@ const NavigationItems = ({
       <Link href="/review" className='hover:border-b hover:border-black'>
         REVIEW
       </Link>
-      <Link href="/member" className='hover:border-b hover:border-black'>
-        MEMBER
-      </Link>
       <Link href="/sign-in" className='hover:border-b hover:border-black'>
         SIGN IN
       </Link>

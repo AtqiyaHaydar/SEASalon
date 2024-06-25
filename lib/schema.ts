@@ -13,3 +13,11 @@ export const reservationSchema = z.object({
   date: z.date(),
   time: z.string(),
 })
+
+export const userDataSchema = z.object({
+  fullName: z.string().min(1).max(50),
+  email: z.string().min(1),
+  phoneNumber: z.string().min(1).max(15),
+  password: z.string().min(1).max(16),
+  role: z.enum(["Customer", "Admin"])
+})
