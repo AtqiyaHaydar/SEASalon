@@ -6,7 +6,7 @@ import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/components/
 import { customerReviewSchema } from '@/lib/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus, StarIcon } from 'lucide-react';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import {
@@ -20,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { FaStar } from 'react-icons/fa';
 import { toast } from 'sonner';
+import { createCustomerReview, getCustomerReviews } from '@/actions/review-actions';
 
 interface CustomerReviewI {
   customerName: string
@@ -28,13 +29,8 @@ interface CustomerReviewI {
 }
 
 const page = () => {
-  const [customerReviewData, setCustomerReviewData] = useState<CustomerReviewI[]>([
-    {
-      customerName: "Chaewon",
-      starRating: 5,
-      comment: "Amazing experience at SEASalon! Friendly staff, perfect haircut and color. Clean and beautifully decorated. Will return!"
-    },
-  ])
+  const [customerReviewData, setCustomerReviewData] = useState<CustomerReviewI[]>([])
+  const [loading, setLoading] = useState(true);
 
   const form = useForm<z.infer<typeof customerReviewSchema>>({
     resolver: zodResolver(customerReviewSchema),
@@ -45,21 +41,31 @@ const page = () => {
     }
   })
 
-  const onSubmit = (values: z.infer<typeof customerReviewSchema>) => {
-    if (values.customerName && values.starRating && values.comment) {
-      const newReview: CustomerReviewI = {
-        customerName: values.customerName,
-        starRating: values.starRating,
-        comment: values.comment,
-      };
-      setCustomerReviewData([...customerReviewData, newReview]);
-      toast.success("Review successfully added!")
-      form.reset()
-    }
-    else {
-      toast.warning("Please fill in all fields.")
+  const onSubmit = async (values: z.infer<typeof customerReviewSchema>) => {
+    try {
+      const review = await createCustomerReview(values);
+      setCustomerReviewData([...customerReviewData, review]);
+      toast.success("Review successfully added!");
+      form.reset();
+    } catch(error) {
+      toast.error("Failed to add review")
     }
   };
+
+  useEffect(() => {
+    async function getReviews() {
+      try {
+        const customerReviews = await getCustomerReviews();
+        setCustomerReviewData(customerReviews)
+        setLoading(false)
+      } catch (error) {
+        console.log("Failed to fetch reviews:", error)
+        setLoading(false)
+      }
+    }
+
+    getReviews();
+  }, [])
 
   return (
     <>
