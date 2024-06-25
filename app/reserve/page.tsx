@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -37,6 +37,7 @@ import { createCustomerReservation } from '@/actions/reserve-actions';
 import { toast } from 'sonner';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import { getUserByEmail } from '@/actions/dashboard-actions';
 
 const timeOptions = [
   { value: '09:00 - 10.00', label: '09.00 - 10.00' },
@@ -56,15 +57,37 @@ const timeOptions = [
 
 const page = () => {
   const { data: session } = useSession();
+  const [username, setUsername] = useState<string | null>('');
 
   if (!session) {
     redirect("/sign-in")
   }
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const email = session?.user?.email;
+
+      if (typeof email === 'string') {
+        try {
+          const user = await getUserByEmail(email); 
+          console.log('User data:', user);
+          
+          if (user) {
+            setUsername(user.fullName); 
+          } else {
+            console.error('User not found');
+          }
+        } catch (error) {
+          
+        }
+      }
+    }
+  })
+
   const formReservation = useForm<z.infer<typeof reservationSchema>>({
     resolver: zodResolver(reservationSchema),
     defaultValues: {
-      name: "",
+      name: username || '',
       phoneNumber: "",
       serviceType: "Haircuts and Styling",
       date: new Date(),
@@ -104,7 +127,7 @@ const page = () => {
                     Name
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder='Enter your name...' {...field} className='border-gold focus-visible:ring-transparent' />
+                    <Input placeholder='Enter your name...' {...field} className='border-gold focus-visible:ring-transparent' defaultValue={username || ''} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
