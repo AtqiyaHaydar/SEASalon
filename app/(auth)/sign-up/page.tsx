@@ -10,6 +10,8 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { toast } from 'sonner'
 import { createUser } from '@/actions/auth-actions'
+import { redirect } from 'next/navigation'
+import Link from 'next/link'
 
 const SignUpPage = () => {
   const form = useForm({
@@ -26,10 +28,10 @@ const SignUpPage = () => {
     try {
       await createUser(values)
       toast.success("Successfully created an account!")
+      redirect("/sign-in")
     } catch (error) {
       toast.error("An error occured")
     }
-
   }
 
   return (
@@ -108,6 +110,13 @@ const SignUpPage = () => {
           <Button type="submit" className='bg-gold hover:bg-orange-300 rounded-full w-full'>
             Sign In
           </Button>
+          <div className='text-center w-full underline text-gold'>
+            <Link href="/sign-in">
+              <p className='text-center'>
+                Already have an account?
+              </p>
+            </Link>
+          </div>
         </form>
       </Form>
     </div>
