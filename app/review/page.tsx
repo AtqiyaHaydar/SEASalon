@@ -29,7 +29,13 @@ interface CustomerReviewI {
 }
 
 const page = () => {
-  const [customerReviewData, setCustomerReviewData] = useState<CustomerReviewI[]>([])
+  const [customerReviewData, setCustomerReviewData] = useState<CustomerReviewI[]>([
+    {
+      customerName: "Hanni Pham",
+      starRating: 5,
+      comment: "a facial treatment and it was amazing. My skin feels so refreshed and rejuvenated. The ambiance of the salon is very relaxing. Highly recommend!"
+    }
+  ])
   const [loading, setLoading] = useState(true);
 
   const form = useForm<z.infer<typeof customerReviewSchema>>({
@@ -56,7 +62,12 @@ const page = () => {
     async function getReviews() {
       try {
         const customerReviews = await getCustomerReviews();
-        setCustomerReviewData(customerReviews)
+        setCustomerReviewData((prevReviews) => {
+          const newReviews = customerReviews.filter(review => 
+            !prevReviews.some(prevReview => prevReview.comment === review.comment)
+          );
+          return [...prevReviews, ...newReviews];
+        });
         setLoading(false)
       } catch (error) {
         console.log("Failed to fetch reviews:", error)
@@ -162,7 +173,7 @@ const CustomerReviewCard = ({
   comment
 }: CustomerReviewI) => {
   return (
-    <Card className='shadow-md border-2 border-gold w-full md:max-w-[300px]' data-aos="fade-up">
+    <Card className='max-h-[250px] overflow-hidden shadow-md border-2 border-gold w-full md:max-w-[300px]' data-aos="fade-up">
       <CardHeader className='flex flex-row items-center w-full justify-between'>
         <p className='font-regular font-medium text-black/70'>{customerName}</p>
         <div className='flex font-medium flex-row gap-3 text-gold items-center'>
