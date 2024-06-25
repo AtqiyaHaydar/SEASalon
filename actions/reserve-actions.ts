@@ -14,6 +14,7 @@ export async function createCustomerReservation(
     })
     return reservation;
   } catch (error) {
+    console.log(error)
     throw new Error("Error creating customer reservation")
   }
 }

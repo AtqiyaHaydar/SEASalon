@@ -34,11 +34,13 @@ const Services = () => {
       </div>
       <div className='flex flex-col md:flex-row gap-6' data-aos="fade-up">
         {serviceData.map(item => (
-          <ServiceCard 
-            title={item.title}
-            description={item.description}
-            image={item.image}
-          />
+          <div key={item.title}>
+            <ServiceCard 
+              title={item.title}
+              description={item.description}
+              image={item.image}
+            />
+          </div>
         ))}
       </div>
     </div>

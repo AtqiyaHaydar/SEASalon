@@ -154,11 +154,13 @@ const page = () => {
       </div>
       <div className='wrapper grid grid-cols-1 md:grid-cols-3 gap-6 mb-12'>
         {customerReviewData.map(item => (
-          <CustomerReviewCard 
-            customerName={item.customerName}
-            starRating={item.starRating}
-            comment={item.comment}
-          />
+          <div key={item.comment}>
+            <CustomerReviewCard 
+              customerName={item.customerName}
+              starRating={item.starRating}
+              comment={item.comment}
+            />
+          </div>
         ))}
       </div>
     </>
@@ -173,7 +175,7 @@ const CustomerReviewCard = ({
   comment
 }: CustomerReviewI) => {
   return (
-    <Card className='max-h-[250px] overflow-hidden shadow-md border-2 border-gold w-full md:max-w-[300px]' data-aos="fade-up">
+    <Card className='md:min-h-[250px] max-h-[275px] overflow-hidden shadow-md border-2 border-gold w-full md:max-w-[300px]' data-aos="fade-up">
       <CardHeader className='flex flex-row items-center w-full justify-between'>
         <p className='font-regular font-medium text-black/70'>{customerName}</p>
         <div className='flex font-medium flex-row gap-3 text-gold items-center'>

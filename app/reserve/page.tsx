@@ -66,7 +66,7 @@ const page = () => {
 
   const onSubmit = async (values: z.infer<typeof reservationSchema>) => {
     try {
-      await createCustomerReservation(values)
+      const reserve = await createCustomerReservation(values);
       toast.success("Reservation successfully added!")
       form.reset();
     } catch (error) {
@@ -77,7 +77,7 @@ const page = () => {
 
   return (
     <>
-      <div className='h-[200px] md:h-[250px] w-full mt-[80px] flex items-center justify-center gap-y-3 flex-col' data-aos="fade-down">
+      {/* <div className='h-[200px] md:h-[250px] w-full mt-[80px] flex items-center justify-center gap-y-3 flex-col' data-aos="fade-down">
         <h1 className='font-alta text-3xl md:text-5xl text-center text-gold'>Reservation</h1>
         <h3 className='text-black/50 text-center'>
           Effortless Booking, Beautiful Results: Schedule Your Salon Experience Today!
@@ -219,7 +219,7 @@ const page = () => {
             </Button>
           </form>
         </Form>
-      </div>
+      </div> */}
     </>
   )
 }
