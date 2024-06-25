@@ -1,4 +1,4 @@
-"use serve"
+"use server"
 
 import prisma from "@/lib/prisma";
 import { customerReviewSchema, reservationSchema } from "@/lib/schema";

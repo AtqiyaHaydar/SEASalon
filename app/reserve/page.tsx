@@ -53,7 +53,7 @@ const timeOptions = [
 ];
 
 const page = () => {
-  const form = useForm<z.infer<typeof reservationSchema>>({
+  const formReservation = useForm<z.infer<typeof reservationSchema>>({
     resolver: zodResolver(reservationSchema),
     defaultValues: {
       name: "",
@@ -66,9 +66,10 @@ const page = () => {
 
   const onSubmit = async (values: z.infer<typeof reservationSchema>) => {
     try {
-      const reserve = await createCustomerReservation(values);
+      console.log(values)
+      await createCustomerReservation(values);
       toast.success("Reservation successfully added!")
-      form.reset();
+      formReservation.reset();
     } catch (error) {
       console.log(error)
       toast.error("Failed to create a reservation")
@@ -77,17 +78,17 @@ const page = () => {
 
   return (
     <>
-      {/* <div className='h-[200px] md:h-[250px] w-full mt-[80px] flex items-center justify-center gap-y-3 flex-col' data-aos="fade-down">
+      <div className='h-[200px] md:h-[250px] w-full mt-[80px] flex items-center justify-center gap-y-3 flex-col' data-aos="fade-down">
         <h1 className='font-alta text-3xl md:text-5xl text-center text-gold'>Reservation</h1>
         <h3 className='text-black/50 text-center'>
           Effortless Booking, Beautiful Results: Schedule Your Salon Experience Today!
         </h3>
       </div>
       <div data-aos="fade-up" className='wrapper flex w-full justify-center'>
-        <Form {...form}>
-          <form className='shadow-md space-y-6 border-2 w-full md:w-[600px] border-gold rounded-xl mb-20 py-10 px-6 md:translate-y-[-50px]' onSubmit={form.handleSubmit(onSubmit)}>
+        <Form {...formReservation}>
+          <form className='shadow-md space-y-6 border-2 w-full md:w-[600px] border-gold rounded-xl mb-20 py-10 px-6 md:translate-y-[-50px]' onSubmit={formReservation.handleSubmit(onSubmit)}>
             <FormField 
-              control={form.control}
+              control={formReservation.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
@@ -102,7 +103,7 @@ const page = () => {
               )}
             />
             <FormField 
-              control={form.control}
+              control={formReservation.control}
               name="phoneNumber"
               render={({ field }) => (
                 <FormItem>
@@ -117,7 +118,7 @@ const page = () => {
               )}
             />
             <FormField 
-              control={form.control}
+              control={formReservation.control}
               name="serviceType"
               render={({ field }) => (
                 <FormItem>
@@ -143,7 +144,7 @@ const page = () => {
             />
             <div className='flex flex-col md:flex-row items-center w-full gap-x-6 gap-y-6 md:gap-y-0'>
               <FormField 
-                control={form.control}
+                control={formReservation.control}
                 name="date"
                 render={({ field }) => (
                   <FormItem className='flex flex-col'>
@@ -185,7 +186,7 @@ const page = () => {
                 )}
               />
               <FormField 
-                control={form.control}
+                control={formReservation.control}
                 name="time"
                 render={({ field }) => (
                   <FormItem>
@@ -219,7 +220,7 @@ const page = () => {
             </Button>
           </form>
         </Form>
-      </div> */}
+      </div>
     </>
   )
 }
