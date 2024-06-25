@@ -43,3 +43,13 @@ model Service {
   serviceName String
   duration Int
 }
+
+model Branch {
+  branchId Int @id @default(autoincrement())
+  branchName String
+  branchLocation String
+  openingTime String
+  closingTime String
+}
+
+// TODO : Reservation tambah branch
