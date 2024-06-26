@@ -133,11 +133,11 @@ const NavigationItems = ({
       }
       {session && (
         role == 'Customer' ? (
-          <Link href="/dashboard">
+          <Link href="/dashboard" className='hover:border-b hover:border-black'>
             DASHBOARD
           </Link>
         ):(
-          <Link href="/admin-dashboard">
+          <Link href="/admin-dashboard" className='hover:border-b hover:border-black'>
             ADMIN DASHBOARD
           </Link>
         )
