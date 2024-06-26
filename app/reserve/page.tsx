@@ -97,6 +97,7 @@ const page = () => {
       name: username || '',
       phoneNumber: "",
       serviceType: "Haircuts and Styling",
+      branchName: "",
       date: new Date(),
       time: ""
     }
@@ -104,7 +105,7 @@ const page = () => {
 
   const onSubmit = async (values: z.infer<typeof reservationSchema>) => {
     try {
-      console.log(values)
+      console.log("Values : ", values)
       await createCustomerReservation(values);
       toast.success("Reservation successfully added!")
       formReservation.reset();
@@ -166,7 +167,7 @@ const page = () => {
                   <FormControl>
                     <Select 
                       onValueChange={(value) => {
-                        field.onChange
+                        field.onChange(value)
                         setBranchName(value)
                       }}
                       defaultValue={field.value}>

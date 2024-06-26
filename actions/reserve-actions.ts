@@ -18,6 +18,8 @@ export async function createCustomerReservation(
       throw new Error('Branch not found');
     }
 
+    console.log("BRANCH", branch)
+
     const reservation = await prisma.reservation.create({
       data : {
         name: values.name,
