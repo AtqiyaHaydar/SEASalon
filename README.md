@@ -10,7 +10,7 @@
 
 ###
 
-<p align="left">• Reservation System : Clients can easily book appointments through SEASalon's intuitive reservation system. They can select their preferred branch, choose from a variety of services, and schedule appointments at their convenience.<br>• Client Reviews: SEASalon values client feedback. Clients can leave reviews based on their salon experiences, sharing their thoughts on services received, ambiance, and overall satisfaction. Prospective clients can read these reviews to make informed decisions.<br>• User Dashboard : Clients have access to a dedicated dashboard where they can view a detailed history of their past appointments, including dates, times, services booked, and branch locations.</p>
+<p align="left">• **Reservation System :** Clients can easily book appointments through SEASalon's intuitive reservation system. They can select their preferred branch, choose from a variety of services, and schedule appointments at their convenience.<br>• **Client Reviews:** SEASalon values client feedback. Clients can leave reviews based on their salon experiences, sharing their thoughts on services received, ambiance, and overall satisfaction. Prospective clients can read these reviews to make informed decisions.<br>• **User Dashboard :** Clients have access to a dedicated dashboard where they can view a detailed history of their past appointments, including dates, times, services booked, and branch locations.</p>
 
 ###
 
