@@ -70,6 +70,10 @@ Set up environment variables in .env file:
 DATABASE_URL=your_database_url
 AUTH_SECRET=your_auth_secret
 ```
+Use this to retrieve your auth secret.
+```
+npx auth secret
+```
 
 ###
 
