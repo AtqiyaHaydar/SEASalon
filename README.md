@@ -15,8 +15,10 @@
 ###
 
 <h2 align="left">⚙️ Technology Stacks Used</h2>
+
 <h4 align="left">Main Technologies</h4>
-| Technologies     | Versi        |
+
+| Technologies     | Version        |
 |:--------------------:|:--------------:|
 | Next.js            | v14.2.4      |
 | Next-auth          | v5.0.0-beta.19 |
@@ -24,8 +26,10 @@
 | React              | v18          |
 | React Hook Form    | v7.52.0      |
 | Tailwind CSS       | v3.4.1       |
+
 <h4 align="left">Additional Libraries</h4>
-| Nama Teknologi         | Versi     |
+
+| Technologies         | Version     |
 |:------------------------:|:-----------:|
 | AOS                    | v2.3.4    |
 | bcrypt                 | v5.1.1    |
@@ -39,13 +43,13 @@
 | tailwind-merge         | v2.3.0    |
 | tailwindcss-animate    | v1.0.7    |
 | zod                    | v3.23.8   |
+
 <h4 align="left">Development Tools</h4>
-| Nama Teknologi     | Versi   |
+
+| Technologies     | Version   |
 |:--------------------:|:---------:|
 | TypeScript         | v5      |
 | PostCSS            | v8      |
-
-
 
 ###
 
