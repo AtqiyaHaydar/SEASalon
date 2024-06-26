@@ -39,17 +39,18 @@ model User {
 }
 
 model Service {
-  id Int @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   serviceName String
-  duration Int
+  duration    Int
+  branchId    Int
+  branch      Branch @relation(fields: [branchId], references: [branchId])
 }
 
 model Branch {
-  branchId Int @id @default(autoincrement())
-  branchName String
+  branchId      Int       @id @default(autoincrement())
+  branchName    String
   branchLocation String
-  openingTime String
-  closingTime String
+  openingTime   String
+  closingTime   String
+  services      Service[]
 }
-
-// TODO : Reservation tambah branch

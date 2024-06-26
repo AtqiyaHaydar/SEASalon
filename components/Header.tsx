@@ -93,9 +93,11 @@ const NavigationItems = ({
       <Link href="/" className='hover:border-b hover:border-black'>
         HOME
       </Link>
-      <Link href="/reserve" className='hover:border-b hover:border-black'>
-        RESERVE
-      </Link>
+      {session && (
+        <Link href="/reserve" className='hover:border-b hover:border-black'>
+          RESERVE
+        </Link>
+      )}
       <Link href="/review" className='hover:border-b hover:border-black'>
         REVIEW
       </Link>

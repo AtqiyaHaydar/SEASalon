@@ -56,7 +56,10 @@ const SignInPage = () => {
       <div className='relative wrapper overflow-hidden flex items-center justify-center h-screen'>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='bg-white wrapper border-2 border-gold rounded-lg shadow-lg space-y-8 w-[600px]  p-6'>
-            <h1 className='text-center text-3xl text-gold font-alta'>Sign In to SEASalon</h1>
+            <div className='flex flex-col gap-2'>
+              <h1 className='text-center text-3xl text-gold font-alta'>Sign In to SEASalon</h1>
+              <p className='text-black/70 text-center'>Sign in to schedule a reservation</p>
+            </div>
             <FormField 
               control={form.control}
               name="email"

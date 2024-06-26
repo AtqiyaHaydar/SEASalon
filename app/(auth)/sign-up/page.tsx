@@ -10,10 +10,12 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { toast } from 'sonner'
 import { createUser } from '@/actions/auth-actions'
-import { redirect } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 const SignUpPage = () => {
+  const router = useRouter();
+
   const form = useForm({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -28,9 +30,10 @@ const SignUpPage = () => {
     try {
       await createUser(values)
       toast.success("Successfully created an account!")
-      redirect("/sign-in")
+      router.push("/sign-in")
     } catch (error) {
-      toast.error("An error occured")
+      console.log(error)
+      toast.error("An error occured, catch error")
     }
   }
 

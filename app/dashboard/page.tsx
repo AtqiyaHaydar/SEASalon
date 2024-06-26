@@ -41,7 +41,7 @@ const DashboardPage = () => {
             const transformedReservations = userReservations.map(reservation => ({
               name: reservation.name,
               phoneNumber: reservation.phoneNumber,
-              serviceType: reservation.serviceType as z.infer<typeof reservationSchema>['serviceType'], // Cast serviceType sesuai dengan enum
+              serviceType: reservation.serviceType,
               date: new Date(reservation.date),
               time: reservation.time,
             }));
@@ -61,7 +61,7 @@ const DashboardPage = () => {
 
   return (
     <div className='mt-[80px] wrapper min-h-[400px] mb-20'>
-      <div className='h-[200px] flex text-center w-full items-center flex-col gap-y-4 justify-center text-gold'>
+      <div className='h-[300px] flex text-center w-full items-center flex-col gap-y-4 justify-center text-gold'>
         <h1 className='text-3xl md:text-4xl'>
           Welcome, {name}
         </h1>
