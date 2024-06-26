@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -37,7 +37,6 @@ import { createCustomerReservation } from '@/actions/reserve-actions';
 import { toast } from 'sonner';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
-import { getUserByEmail } from '@/actions/dashboard-actions';
 
 const timeOptions = [
   { value: '09:00 - 10.00', label: '09.00 - 10.00' },
@@ -62,27 +61,6 @@ const page = () => {
   if (!session) {
     redirect("/sign-in")
   }
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      const email = session?.user?.email;
-
-      if (typeof email === 'string') {
-        try {
-          const user = await getUserByEmail(email); 
-          console.log('User data:', user);
-          
-          if (user) {
-            setUsername(user.fullName); 
-          } else {
-            console.error('User not found');
-          }
-        } catch (error) {
-          
-        }
-      }
-    }
-  })
 
   const formReservation = useForm<z.infer<typeof reservationSchema>>({
     resolver: zodResolver(reservationSchema),
@@ -157,18 +135,18 @@ const page = () => {
                     Reservation Type
                   </FormLabel>
                   <FormControl>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger className='border-gold focus-visible:ring-transparent'>
-                        <SelectValue placeholder="Select a service type" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent className='border-gold'>
-                      <SelectItem value="Haircuts and Styling">Haircuts and Styling</SelectItem>
-                      <SelectItem value="Manicure and Pedicure">Manicure and Pedicure</SelectItem>
-                      <SelectItem value="Facial Treatments">Facial Treatments</SelectItem>
-                    </SelectContent>
-                  </Select>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger className='border-gold focus-visible:ring-transparent'>
+                          <SelectValue placeholder="Select a service type" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className='border-gold'>
+                        <SelectItem value="Haircuts and Styling">Haircuts and Styling</SelectItem>
+                        <SelectItem value="Manicure and Pedicure">Manicure and Pedicure</SelectItem>
+                        <SelectItem value="Facial Treatments">Facial Treatments</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </FormControl>
                 </FormItem>
               )}
@@ -225,22 +203,22 @@ const page = () => {
                       Time
                     </FormLabel>
                     <FormControl>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger className='w-[225px] border-gold focus-visible:ring-transparent translate-y-[-5px]'>
-                          <SelectValue placeholder="Select a time" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent className='flex flex-col items-center'>
-                        <ScrollArea className='h-[150px]'>
-                          {timeOptions.map((option) => (
-                            <SelectItem key={option.value} value={option.value} className='text-center w-full'>
-                              {option.label}
-                            </SelectItem>
-                          ))}
-                        </ScrollArea>
-                      </SelectContent>
-                    </Select>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className='w-[225px] border-gold focus-visible:ring-transparent translate-y-[-5px]'>
+                            <SelectValue placeholder="Select a time" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className='flex flex-col items-center'>
+                          <ScrollArea className='h-[150px]'>
+                            {timeOptions.map((option) => (
+                              <SelectItem key={option.value} value={option.value} className='text-center w-full'>
+                                {option.label}
+                              </SelectItem>
+                            ))}
+                          </ScrollArea>
+                        </SelectContent>
+                      </Select>
                     </FormControl>
                   </FormItem>
                 )}
