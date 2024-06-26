@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { signInSchema } from '@/lib/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -14,14 +14,36 @@ import Flower1 from '@/public/flower1.svg'
 import Image from 'next/image'
 import { signIn, useSession } from "next-auth/react";
 import { toast } from 'sonner'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { getUserByEmail } from '@/actions/dashboard-actions'
 
 const SignInPage = () => {
   const { data: session } = useSession()
+  const router = useRouter()
 
-  if (session) {
-    redirect("/dashboard")
-  }
+  useEffect(() => {
+    const getUser = async () => {
+      const email = session?.user?.email
+
+      try {
+        if (typeof email === 'string') {
+          const user = await getUserByEmail(email)
+
+          if (user?.role === 'Customer') {
+            router.push("/dashboard")
+          } else if (user?.role === 'Admin') {
+            router.push("/admin-dashboard")
+          }
+        } 
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    if (session) {
+      getUser()
+    }
+  }, [session, router])
 
   const form = useForm({
     resolver: zodResolver(signInSchema),

@@ -9,6 +9,7 @@ import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { signOut, useSession } from 'next-auth/react'
+import { getUserByEmail } from '@/actions/dashboard-actions'
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -79,6 +80,31 @@ const NavigationItems = ({
   className: string
 }) => {
   const { data: session } = useSession();
+  const [role, setRole] = useState<string>('')
+
+  useEffect(() => {
+    const getUser = async () => {
+      const email = session?.user?.email
+
+      try {
+        if (typeof email === 'string') {
+          const user = await getUserByEmail(email)
+
+          if (user?.role === 'Customer') {
+            setRole('Customer')
+          } else if (user?.role === 'Admin') {
+            setRole('Admin')
+          }
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    if (session) {
+      getUser()
+    }
+  }, [session])
 
   const handleLogout = () => {
     signOut({
@@ -93,18 +119,28 @@ const NavigationItems = ({
       <Link href="/" className='hover:border-b hover:border-black'>
         HOME
       </Link>
-      {session && (
+      {session && role !== 'Admin' &&(
         <Link href="/reserve" className='hover:border-b hover:border-black'>
           RESERVE
         </Link>
       )}
-      <Link href="/review" className='hover:border-b hover:border-black'>
-        REVIEW
-      </Link>
+      {
+        role !== 'Admin' && (
+          <Link href="/review" className='hover:border-b hover:border-black'>
+            REVIEW
+          </Link>
+        )
+      }
       {session && (
-        <Link href="/dashboard">
-          DASHBOARD
-        </Link>
+        role == 'Customer' ? (
+          <Link href="/dashboard">
+            DASHBOARD
+          </Link>
+        ):(
+          <Link href="/admin-dashboard">
+            ADMIN DASHBOARD
+          </Link>
+        )
       )}
       {session ? (
         <button onClick={handleLogout} className='hover:border-b hover:border-black'>

@@ -5,7 +5,6 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router'
 import { getUserByEmail, getUserReservationByName } from '@/actions/dashboard-actions';
 import { reservationSchema } from '@/lib/schema';
-import { z } from 'zod';
 import { redirect } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
