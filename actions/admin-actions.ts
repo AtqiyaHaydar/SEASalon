@@ -26,10 +26,29 @@ export async function addBranch(
 ) {
   try {
     const branch = await prisma.branch.create({
-      data: values,
-    })
-    return branch
+      data: {
+        branchName: values.branchName,
+        branchLocation: values.branchLocation,
+        openingTime: values.openingTime,
+        closingTime: values.closingTime,
+        services: values.services ? {
+          create: values.services.map(service => ({
+            serviceName: service.serviceName,
+            duration: service.duration,
+          }))
+        } : undefined,
+      },
+    });
+    return branch;
   } catch (error) {
-    throw new Error("Error creating customer review");
+    throw new Error("Error creating branch");
+  }
+}
+
+export async function getAllBranch() {
+  try {
+    return prisma.branch.findMany()
+  } catch (error) {
+    throw new Error("Error fetching all branch")
   }
 }

@@ -24,6 +24,10 @@ export const branchSchema = z.object({
   branchLocation: z.string().min(1),
   openingTime: z.string().min(1),
   closingTime: z.string().min(1),
+  services: z.array(z.object({
+    serviceName: z.string(),
+    duration: z.number(),
+  })).optional(),
 })
 
 export const userDataSchema = z.object({
