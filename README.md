@@ -18,15 +18,19 @@
 
 ###
 
+Clone the repository
 ```
 git clone https://github.com/AtqiyaHaydar/SEASalon.git
 ```
+Intstall dependencies
 ```
 npm install
 ```
-
-in .env local, you can set your own DATABASE_URL & AUTH_SECRET
-
+Set up environment variables in .env file:
+```
+DATABASE_URL=your_database_url
+AUTH_SECRET=your_auth_secret
+```
 <p align="left"></p>
 
 ###
