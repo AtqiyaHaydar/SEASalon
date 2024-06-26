@@ -1,3 +1,32 @@
 ## SEA Salon
 
 ![Thumbnail](./public/VogueVenue.png)
+
+<p align="left">Indulge in premier treatments with a touch of sophistication at our salon, where we enhance your beauty and elevate luxury to an art form.</p>
+
+###
+
+<h3 align="left">✨ Feature</h3>
+
+###
+
+<p align="left">• Reservation System : Clients can easily book appointments through SEASalon's intuitive reservation system. They can select their preferred branch, choose from a variety of services, and schedule appointments at their convenience.<br>• Client Reviews: SEASalon values client feedback. Clients can leave reviews based on their salon experiences, sharing their thoughts on services received, ambiance, and overall satisfaction. Prospective clients can read these reviews to make informed decisions.<br>• User Dashboard : Clients have access to a dedicated dashboard where they can view a detailed history of their past appointments, including dates, times, services booked, and branch locations.</p>
+
+###
+
+<h3 align="left">💻 Project Set Up</h3>
+
+###
+
+```
+git clone https://github.com/AtqiyaHaydar/SEASalon.git
+```
+```
+npm install
+```
+
+in .env local, you can set your own DATABASE_URL & AUTH_SECRET
+
+<p align="left"></p>
+
+###
