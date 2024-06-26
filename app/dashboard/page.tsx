@@ -59,7 +59,7 @@ const DashboardPage = () => {
 
   return (
     <div className='mt-[80px] wrapper min-h-[400px] mb-20'>
-      <div className='h-[300px] flex text-center w-full items-center flex-col gap-y-4 justify-center text-gold'>
+      <div className='h-[300px] flex text-center w-full items-center flex-col gap-y-4 justify-center text-gold' data-aos="fade-down">
         <h1 className='text-3xl md:text-4xl'>
           Welcome, {name}
         </h1>
@@ -70,7 +70,7 @@ const DashboardPage = () => {
         </Link>
         <p className='text-black/70 text-center'>These are your past reservations</p>
       </div>
-      <div>
+      <div data-aos="fade-up">
         {reservations ? (
           <ul>
             {reservations.map((reservation, index) => (
@@ -83,6 +83,9 @@ const DashboardPage = () => {
                   <div>   
                     <p>Date : {reservation.date.toLocaleDateString()}</p>
                     <p>Time : {reservation.time}</p>
+                    {
+                      reservation.branchName && <p>Branch Name : {reservation.branchName}</p>
+                    }
                   </div>
                 </div>
                 <div>

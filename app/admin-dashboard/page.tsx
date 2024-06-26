@@ -58,7 +58,7 @@ const page = () => {
 
   return (
     <div className='mt-[80px] wrapper min-h-[400px] mb-20'>
-      <div className='h-[200px] flex text-center w-full items-center flex-col gap-y-4 justify-center text-gold'>
+      <div className='h-[200px] flex text-center w-full items-center flex-col gap-y-4 justify-center text-gold' data-aos="fade-down">
         <h1 className='text-3xl md:text-4xl'>
           Welcome Admin
         </h1>
@@ -67,7 +67,7 @@ const page = () => {
           <CreateNewService />
         </div>
       </div>
-      <div className='grid grid-cols-1 md:gris-cols-2 lg:grid-cols-3 gap-4'>
+      <div className='grid grid-cols-1 md:gris-cols-2 lg:grid-cols-3 gap-4' data-aos="fade-up">
         {/* DISPLAYING BRANCHES AND THEIR SERVICES */}
         {branches && branches.length > 0 ? (
           branches.map((branch) => (
