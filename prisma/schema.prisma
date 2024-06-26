@@ -48,7 +48,7 @@ model Service {
 
 model Branch {
   branchId      Int       @id @default(autoincrement())
-  branchName    String
+  branchName    String    @unique
   branchLocation String
   openingTime   String
   closingTime   String

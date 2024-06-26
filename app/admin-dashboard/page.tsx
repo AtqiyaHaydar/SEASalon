@@ -1,6 +1,6 @@
 "use client"
 
-import { addBranch, addService, getAllBranch } from '@/actions/admin-actions'
+import { addBranch, addService, addServiceForBranch, getAllBranch } from '@/actions/admin-actions'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
@@ -17,15 +17,44 @@ import { z } from 'zod'
 
 const page = () => {
   const [branches, setBranches] = useState<z.infer<typeof branchSchema>[]>([])
+  const [branchName, setBranchName] = useState<string>('');
 
+  useEffect(() => {
+    console.log("Branch Clicked: ", branchName)
+  }, [branchName])
+ 
   useEffect(() => {
     async function fetchBranch() {
       const fetchedBranches = await getAllBranch();
       setBranches(fetchedBranches)
+      console.log(fetchedBranches)
     }
 
     fetchBranch();
   }, [])
+
+  const form = useForm<z.infer<typeof serviceSchema>>({
+    resolver: zodResolver(serviceSchema),
+    defaultValues: {
+      serviceName: "",
+      duration: 1,
+    }
+  })
+
+  const onSubmit = async (values: z.infer<typeof serviceSchema>) => {
+    console.log(values)
+    try {
+      await addServiceForBranch(branchName, values)
+      toast.success("Successfully created a new service to the branch")
+      form.reset()
+      // Refetch branches to update the UI
+      const updatedBranches = await getAllBranch();
+      setBranches(updatedBranches)
+    } catch (error) {
+      console.log(error)
+      toast.error("Failed to create a new service to the branch")
+    }
+  }
 
   return (
     <div className='mt-[80px] wrapper min-h-[400px] mb-20'>
@@ -38,29 +67,96 @@ const page = () => {
           <CreateNewService />
         </div>
       </div>
-      <div>
+      <div className='grid grid-cols-1 md:gris-cols-2 lg:grid-cols-3 gap-4'>
         {/* DISPLAYING BRANCHES AND THEIR SERVICES */}
         {branches && branches.length > 0 ? (
           branches.map((branch) => (
-            <div key={branch.branchName} className='branch'>
-              <h2 className='text-2xl'>{branch.branchName}</h2>
-              <p>Location: {branch.branchLocation}</p>
-              <p>Opening Time: {branch.openingTime}</p>
-              <p>Closing Time: {branch.closingTime}</p>
-              {branch.services && branch.services.length > 0 ? (
-                <>
-                  <h3 className='text-xl mt-4'>Services:</h3>
-                  <ul>
-                    {branch.services.map((service) => (
-                      <li key={service.serviceName}>
-                        {service.serviceName} - {service.duration} minutes
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              ) : (
-                <p>No services available</p>
-              )}
+            <div key={branch.branchName} className='p-4 border-2 border-gold shadow-md rounded-lg flex flex-col justify-between space-y-4'>
+              <div className='space-y-2'>
+                <h2 className='text-2xl text-gold'>{branch.branchName}</h2>
+                <div className='mt-4 text-black'>
+                  <p>Location: {branch.branchLocation}</p>
+                  <p>Opening Time: {branch.openingTime}</p>
+                  <p>Closing Time: {branch.closingTime}</p>
+                </div>
+                {branch.services && branch.services.length > 0 ? (
+                  <>
+                    <h3 className='text-xl mt-4'>Services:</h3>
+                    <ul className='flex flex-wrap'>
+                      {branch.services.map((service) => (
+                        <li key={service.serviceName} className='bg-orange-100 rounded-full py-2 px-4 text-sm'>
+                          {service.serviceName} - {service.duration} minutes
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <p>No services available</p>
+                )}              
+              </div>
+
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button 
+                    className='bg-gold rounded-full text-white hover:bg-orange-300 flex gap-x-4 hover:gap-x-6 transition-all'
+                    onClick={() => setBranchName(branch.branchName)}
+                  >
+                    Add Service <Plus />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+                      <FormField 
+                        control={form.control}
+                        name="serviceName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className='text-black/70'>
+                              Service Name
+                            </FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder='Enter a service name...'
+                                {...field}
+                                className='border-gold focus-visible:ring-transparent' 
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                      <FormField 
+                        control={form.control}
+                        name="duration"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className='text-black/70'>
+                              Duration
+                            </FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder='Enter a service name...'
+                                {...field}
+                                className='border-gold focus-visible:ring-transparent' 
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                      <div className='flex flex-col md:flex-row gap-4'>
+                        <Button type="submit" className='bg-gold rounded-full hover:bg-orange-300'>
+                            Create Service
+                        </Button>
+                        <DialogClose asChild>
+                          <Button className='bg-white border-gold rounded-full border-2 hover:bg-white min-w-[120px] text-gold'>
+                            Close
+                          </Button>
+                        </DialogClose>
+                      </div>
+                    </form>
+                  </Form>
+                </DialogContent>
+              </Dialog>
             </div>
           ))
         ) : (
@@ -88,11 +184,11 @@ function CreateNewBranch() {
     console.log(values)
     try {
       const branch = await addBranch(values)
-      toast.success("Successfully created a new service")
+      toast.success("Successfully created a new branch")
       form.reset()
     } catch (error) {
       console.log(error)
-      toast.error("Failed to create a new service")
+      toast.error("Failed to create a new branch")
     }
   }
 
@@ -116,7 +212,7 @@ function CreateNewBranch() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className='flex gap-x-4 hover:gap-x-6 bg-gold rounded-full hover:bg-orange-300'>
+        <Button className='flex gap-x-4 hover:gap-x-6 bg-gold rounded-full hover:bg-orange-300 transition-all'>
           Add Branch <Plus />
         </Button>
       </DialogTrigger>
@@ -263,7 +359,7 @@ function CreateNewService() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className='flex gap-x-4 hover:gap-x-6 bg-gold rounded-full hover:bg-orange-300'>
+        <Button className='flex gap-x-4 hover:gap-x-6 bg-gold rounded-full hover:bg-orange-300 transition-all'>
           Add Service <Plus />
         </Button>
       </DialogTrigger>
