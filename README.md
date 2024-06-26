@@ -14,7 +14,7 @@
 
 ###
 
-<h3 align="left">💻 Project Set Up</h3>
+<h2 align="left">💻 Project Set Up</h2>
 
 ###
 
@@ -34,7 +34,7 @@ AUTH_SECRET=your_auth_secret
 
 ###
 
-<h3 align="left">👤 Admin Role</h3>
+<h2 align="left">👤 Admin Role</h2>
 <p align="left">To log in as an admin, use the following credentials: 
 ● Email: thomas.n@compfest.id
 ● Password: Admin123
@@ -42,7 +42,7 @@ AUTH_SECRET=your_auth_secret
 
 ###
 
-<h3 align="left">📝 Author</h3>
+<h2 align="left">📝 Author</h2>
 <p align="left">
 ● Atqiya Haydar Luqman
 </p>
