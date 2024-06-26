@@ -23,7 +23,7 @@ const Hero = () => {
         <Image 
           src={Danielle}
           alt="Model"
-          className='-z-20 max-h-[500px] max-w-[500px] md:h-[750px] md:w-[750px] md:translate-x-0 translate-x-[-60px]'
+          className='-z-20 md:max-h-[500px] md:max-w-[500px] md:h-[750px] md:w-[750px] md:translate-x-0 translate-x-[-60px]'
         />
       </div>
     </div>
