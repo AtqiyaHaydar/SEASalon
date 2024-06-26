@@ -8,6 +8,7 @@ export async function createCustomerReservation(
   values: z.infer<typeof reservationSchema>
 ) {
   try {
+    console.log(values)
     const branch = await prisma.branch.findUnique({
       where: {
         branchName: values.branchName
@@ -25,6 +26,7 @@ export async function createCustomerReservation(
         name: values.name,
         phoneNumber: values.phoneNumber,
         date: values.date,
+        serviceType: values.serviceType,
         time: values.time,
         branchId: branch.branchId,
       }

@@ -36,7 +36,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { createCustomerReservation } from '@/actions/reserve-actions';
 import { toast } from 'sonner';
 import { useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { getAllBranch, getServicesByBranchName } from '@/actions/admin-actions';
 
 const timeOptions = [
@@ -57,6 +57,7 @@ const timeOptions = [
 
 const page = () => {
   const { data: session } = useSession();
+  const router = useRouter()
   const [username, setUsername] = useState<string | null>('');
   const [branches, setBranches] = useState<z.infer<typeof branchSchema>[]>([])
   const [branchName, setBranchName] = useState<string | undefined>('')
@@ -85,7 +86,6 @@ const page = () => {
     async function fetchBranch() {
       const fetchedBranches = await getAllBranch();
       setBranches(fetchedBranches)
-      console.log(fetchedBranches)
     }
 
     fetchBranch();
@@ -96,7 +96,7 @@ const page = () => {
     defaultValues: {
       name: username || '',
       phoneNumber: "",
-      serviceType: "Haircuts and Styling",
+      serviceType: "",
       branchName: "",
       date: new Date(),
       time: ""
@@ -109,6 +109,7 @@ const page = () => {
       await createCustomerReservation(values);
       toast.success("Reservation successfully added!")
       formReservation.reset();
+      router.push("/dashboard")
     } catch (error) {
       console.log(error)
       toast.error("Failed to create a reservation")
@@ -135,7 +136,7 @@ const page = () => {
                     Name
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder='Enter your name...' {...field} className='border-gold focus-visible:ring-transparent' defaultValue={username || ''} />
+                    <Input placeholder='Enter your full name...' {...field} className='border-gold focus-visible:ring-transparent' defaultValue={username || ''} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

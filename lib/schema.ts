@@ -9,7 +9,7 @@ export const customerReviewSchema = z.object({
 export const reservationSchema = z.object({
   name: z.string().min(1),
   phoneNumber: z.string().min(1).max(15),
-  serviceType: z.string(),
+  serviceType: z.string().min(1),
   branchName: z.string().optional(),
   date: z.date(),
   time: z.string(),

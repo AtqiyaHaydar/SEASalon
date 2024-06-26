@@ -25,7 +25,6 @@ const DashboardPage = () => {
       if (typeof email === 'string') {
         try {
           const user = await getUserByEmail(email); 
-          console.log('User data:', user);
           
           if (user) {
             setName(user.fullName); 
@@ -83,9 +82,6 @@ const DashboardPage = () => {
                   <div>   
                     <p>Date : {reservation.date.toLocaleDateString()}</p>
                     <p>Time : {reservation.time}</p>
-                    {
-                      reservation.branchName && <p>Branch Name : {reservation.branchName}</p>
-                    }
                   </div>
                 </div>
                 <div>

@@ -20,10 +20,6 @@ const page = () => {
   const [branchName, setBranchName] = useState<string>('');
 
   useEffect(() => {
-    console.log("Branch Clicked: ", branchName)
-  }, [branchName])
- 
-  useEffect(() => {
     async function fetchBranch() {
       const fetchedBranches = await getAllBranch();
       setBranches(fetchedBranches)
@@ -31,7 +27,7 @@ const page = () => {
     }
 
     fetchBranch();
-  }, [])
+  }, [branches])
 
   const form = useForm<z.infer<typeof serviceSchema>>({
     resolver: zodResolver(serviceSchema),
