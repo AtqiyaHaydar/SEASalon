@@ -16,7 +16,7 @@ const Clients = () => {
           className='w-[450px] h-[450px]'
           data-aos="fade-right"
         />
-        <div className='flex flex-col gap-y-8 justify-center items-center md:items-start md:justify-start' data-aos="fade-left">
+        <div className='flex flex-col gap-y-8 justify-center items-center md:items-start md:justify-start' data-aos="fade-up">
           <div className='space-y-4 text-center md:text-start'>
             <h3 className='text-4xl text-gold font-alta'>Why Our Client <br />Choose Us</h3>
             <p className='tracking-wider text-black/70'>

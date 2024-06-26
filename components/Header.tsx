@@ -31,7 +31,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`fixed z-20 w-full top-0 h-[80px] py-4 flex justify-between items-center transition-colors duration-300 ${scrolled ? 'bg-white/50 border-b border-gold backdrop-blur-md' : 'bg-transparent'}`} data-aos="fade-down">
+    <header className={`fixed z-20 w-full top-0 h-[80px] py-4 flex justify-between items-center transition-sll duration-300 ${scrolled ? 'bg-white/50 border-b border-gold backdrop-blur-md' : 'bg-transparent'}`} data-aos="fade-down">
       <div className='wrapper w-full flex justify-between items-center'>
         <div className='flex gap-x-8 items-center'>
           <Image 
