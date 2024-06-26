@@ -14,6 +14,41 @@
 
 ###
 
+<h2 align="left">⚙️ Technology Stacks Used</h2>
+<h4 align="left">Main Technologies</h4>
+| Technologies     | Versi        |
+|--------------------|--------------|
+| Next.js            | v14.2.4      |
+| Next-auth          | v5.0.0-beta.19 |
+| Prisma             | v5.15.1      |
+| React              | v18          |
+| React Hook Form    | v7.52.0      |
+| Tailwind CSS       | v3.4.1       |
+<h4 align="left">Additional Libraries</h4>
+| Nama Teknologi         | Versi     |
+|------------------------|-----------|
+| AOS                    | v2.3.4    |
+| bcrypt                 | v5.1.1    |
+| bcryptjs               | v2.4.3    |
+| class-variance-authority | v0.7.0  |
+| clsx                   | v2.1.1    |
+| date-fns               | v3.6.0    |
+| lucide-react           | v0.396.0  |
+| react-icons            | v5.2.1    |
+| sonner                 | v1.5.0    |
+| tailwind-merge         | v2.3.0    |
+| tailwindcss-animate    | v1.0.7    |
+| zod                    | v3.23.8   |
+<h4 align="left">Development Tools</h4>
+| Nama Teknologi     | Versi   |
+|--------------------|---------|
+| TypeScript         | v5      |
+| PostCSS            | v8      |
+
+
+
+###
+
 <h2 align="left">💻 Project Set Up</h2>
 
 ###
@@ -35,10 +70,9 @@ AUTH_SECRET=your_auth_secret
 ###
 
 <h2 align="left">👤 Admin Role</h2>
-<p align="left">To log in as an admin, use the following credentials: 
-● Email: thomas.n@compfest.id
-● Password: Admin123
-</p>
+<p align="left">To log in as an admin, use the following credentials: </p>
+<p>● Email: thomas.n@compfest.id </p>
+<p>● Password: Admin123 </p>
 
 ###
 
@@ -46,3 +80,5 @@ AUTH_SECRET=your_auth_secret
 <p align="left">
 ● Atqiya Haydar Luqman
 </p>
+
+### 
