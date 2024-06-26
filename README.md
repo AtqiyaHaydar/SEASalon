@@ -31,6 +31,18 @@ Set up environment variables in .env file:
 DATABASE_URL=your_database_url
 AUTH_SECRET=your_auth_secret
 ```
-<p align="left"></p>
 
 ###
+
+<h3 align="left">👤 Admin Role</h3>
+<p align="left">To log in as an admin, use the following credentials: 
+● Email: thomas.n@compfest.id
+● Password: Admin123
+</p>
+
+###
+
+<h3 align="left">📝 Author</h3>
+<p align="left">
+● Atqiya Haydar Luqman
+</p>
