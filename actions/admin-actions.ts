@@ -69,6 +69,28 @@ export async function getServicesByBranchId(id: number) {
   }
 }
 
+export async function getServicesByBranchName(name: string | undefined) {
+  try {
+    const branch = await prisma.branch.findUnique({
+      where: {
+        branchName: name, 
+      },
+    });
+
+    if (!branch) {
+      throw new Error('Branch not found');
+    }
+
+    return await prisma.service.findMany({
+      where: {
+        branchId: branch.branchId
+      }
+    })    
+  } catch (error) {
+    throw new Error("Error fetching the services")
+  }
+}
+
 export async function addServiceForBranch(name: string, values: z.infer<typeof serviceSchema>) {
   try {
     const branch = await prisma.branch.findUnique({

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { zodResolver } from '@hookform/resolvers/zod';
-import { reservationSchema } from '@/lib/schema';
+import { branchSchema, reservationSchema } from '@/lib/schema';
 import { Input } from '@/components/ui/input';
 import { CalendarIcon } from "lucide-react"
 import { format } from "date-fns"
@@ -37,6 +37,7 @@ import { createCustomerReservation } from '@/actions/reserve-actions';
 import { toast } from 'sonner';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import { getAllBranch, getServicesByBranchName } from '@/actions/admin-actions';
 
 const timeOptions = [
   { value: '09:00 - 10.00', label: '09.00 - 10.00' },
@@ -57,10 +58,38 @@ const timeOptions = [
 const page = () => {
   const { data: session } = useSession();
   const [username, setUsername] = useState<string | null>('');
+  const [branches, setBranches] = useState<z.infer<typeof branchSchema>[]>([])
+  const [branchName, setBranchName] = useState<string | undefined>('')
+  const [addedService, setAddedService] = useState<string[]>([])
 
   if (!session) {
     redirect("/sign-in")
   }
+
+  useEffect(() => {
+    async function getServiceFromBranch() {
+      if (branchName) {
+        const serviceFromBranch = await getServicesByBranchName(branchName)
+        
+        if (serviceFromBranch) {
+          const serviceFromBranchNames = serviceFromBranch.map(service => service.serviceName);
+          setAddedService(serviceFromBranchNames)
+        }
+      }
+    }
+
+    getServiceFromBranch()
+  }, [branchName])
+
+  useEffect(() => {
+    async function fetchBranch() {
+      const fetchedBranches = await getAllBranch();
+      setBranches(fetchedBranches)
+      console.log(fetchedBranches)
+    }
+
+    fetchBranch();
+  }, [])
 
   const formReservation = useForm<z.infer<typeof reservationSchema>>({
     resolver: zodResolver(reservationSchema),
@@ -128,11 +157,49 @@ const page = () => {
             />
             <FormField 
               control={formReservation.control}
+              name="branchName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className='text-black/70'>
+                    Salon Branch
+                  </FormLabel>
+                  <FormControl>
+                    <Select 
+                      onValueChange={(value) => {
+                        field.onChange
+                        setBranchName(value)
+                      }}
+                      defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger className='border-gold focus-visible:ring-transparent'>
+                          <SelectValue placeholder="Select a salon" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className='border-gold'>
+                        {branches.map((item) => {
+                          return (
+                            <div key={item.branchName}>
+                              <SelectItem 
+                                value={item.branchName}
+                              >
+                                {item.branchName}
+                              </SelectItem>
+                            </div>
+                          )
+                        })}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField 
+              control={formReservation.control}
               name="serviceType"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className='text-black/70'>
-                    Reservation Type
+                    Service Type
                   </FormLabel>
                   <FormControl>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -145,6 +212,11 @@ const page = () => {
                         <SelectItem value="Haircuts and Styling">Haircuts and Styling</SelectItem>
                         <SelectItem value="Manicure and Pedicure">Manicure and Pedicure</SelectItem>
                         <SelectItem value="Facial Treatments">Facial Treatments</SelectItem>
+                        {addedService.map(service => (
+                          <SelectItem key={service} value={service}>
+                            {service}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </FormControl>

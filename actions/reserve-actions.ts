@@ -3,14 +3,29 @@
 import prisma from "@/lib/prisma";
 import { reservationSchema } from "@/lib/schema";
 import { z } from "zod";
-import { Reservation } from "@prisma/client";
 
 export async function createCustomerReservation(
   values: z.infer<typeof reservationSchema>
-): Promise<Reservation> {
+) {
   try {
+    const branch = await prisma.branch.findUnique({
+      where: {
+        branchName: values.branchName
+      }
+    })
+
+    if (!branch) {
+      throw new Error('Branch not found');
+    }
+
     const reservation = await prisma.reservation.create({
-      data: values,
+      data : {
+        name: values.name,
+        phoneNumber: values.phoneNumber,
+        date: values.date,
+        time: values.time,
+        branchId: branch.branchId,
+      }
     })
     return reservation;
   } catch (error) {

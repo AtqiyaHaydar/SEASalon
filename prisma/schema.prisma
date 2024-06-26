@@ -20,6 +20,8 @@ model Reservation {
   serviceType String @default("Haircuts and Styling")
   date DateTime
   time String
+  branchId    Int?
+  branch      Branch? @relation(fields: [branchId], references: [branchId])
 }
 
 model CustomerReview {
@@ -53,4 +55,5 @@ model Branch {
   openingTime   String
   closingTime   String
   services      Service[]
+  reservations  Reservation[]
 }
