@@ -81,7 +81,7 @@ const page = () => {
                     <ul className='flex flex-wrap'>
                       {branch.services.map((service) => (
                         <li key={service.serviceName} className='bg-orange-100 rounded-full py-2 px-4 text-sm'>
-                          {service.serviceName} - {service.duration} minutes
+                          {service.serviceName}
                         </li>
                       ))}
                     </ul>
