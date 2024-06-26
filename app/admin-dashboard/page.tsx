@@ -83,7 +83,7 @@ function CreateNewBranch() {
           Add Branch <Plus />
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className='max-w-[450px] rounded-lg'>
       <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
             <FormField 
@@ -227,7 +227,7 @@ function CreateNewService() {
           Add Service <Plus />
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className='max-w-[450px] rounded-lg'>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
             <FormField 
